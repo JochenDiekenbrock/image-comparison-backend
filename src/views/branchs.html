@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Branches</h1>
+<div>
+    <ul class="list-unstyled">
+        {% for branch, directory in branchDictionary %}
+        <li><a href="/branch/{{ branch }}">{{ branch }} in {{ directory }}</a></li>
+        {% else %}
+        <li>No branches</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
