@@ -18,12 +18,10 @@ app.on('error', (err) => {
 app.use(logger());
 
 const env = new nunjucks.Environment(
-    new nunjucks.FileSystemLoader(path.join(__dirname, '/views')),
+    new nunjucks.FileSystemLoader(path.join('src', 'views')),
 );
-// env.addFilter('shorten', function (str, count) {
-//     return str.slice(0, count || 5)
-// })
-app.use(views(__dirname + '/views', {
+
+app.use(views(path.join('src', 'views'), {
     map: {html: 'nunjucks'}, extension: 'html', options: {
         nunjucksEnv: env,
     },
@@ -32,7 +30,7 @@ app.use(views(__dirname + '/views', {
 
 app.use(routes);
 
-app.use(serve(path.join(__dirname, '../public')));
+app.use(serve('public'));
 
 // Compress
 app.use(compress());

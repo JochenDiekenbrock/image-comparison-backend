@@ -18,7 +18,10 @@
     "author": "Jochen Diekenbrock",
     "scripts": {
         "build-server": "tslint --project . && tsc",
-        "start": "cross-env NODE_ENV=development nodemon -e ts --exec ts-node src/server.ts"
+        "build-docker": "sudo docker build -t jochendiekenbrock/image-comparison-backend .",
+        "run-docker": "sudo docker run -p 80:3000 -v $(pwd)/public/data:/home/node/app/public/data -d jochendiekenbrock/image-comparison-backend",
+        "start-dev": "cross-env NODE_ENV=development nodemon -e ts --exec ts-node src/server.ts",
+        "start": "cross-env NODE_ENV=production node dist/server.js"
     },
     "devDependencies": {
         "@types/koa": "2.0.46",
