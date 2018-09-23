@@ -3,8 +3,8 @@ export interface Config {
     dataDir: string; // relative to /public
 }
 
-const config = {
-    port: process.env.NODE_PORT || 3000,
+const config: Config = {
+    port: +process.env.NODE_PORT || 3000,
     dataDir: 'data',
 };
 
