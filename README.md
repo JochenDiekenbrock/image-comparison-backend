@@ -27,8 +27,9 @@ Using Docker (recommended):
 ```sh
 sudo docker run -p <port>:3000 -v <datadir>:/home/node/app/public/data -d jochendiekenbrock/image-comparison-backend
 ```
-(replace ```<port>``` with a port on your system, for example 80 and ```<datadir>``` with the directory on your system,
-where the test data resides, for example /public/data)
+(replace ```<port>``` with a port on your system, for example 80 and 
+```<datadir>``` with the directory on your system, where the test data resides, 
+for example /public/data)
 
 Run manually or for development:
 
