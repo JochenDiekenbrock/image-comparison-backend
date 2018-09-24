@@ -18,13 +18,22 @@ the image comparison backend offers an option to accept the new image. The test 
 and the new image will be used from now on as new base image.
 
 Requirements:
- * Node v8
- * Docker
+ * Node v8 (if you want to develop or run without docker)
+ * Docker (if using the docker image (recommended))
 
 ## Getting Started
+Using Docker (recommended):
+(replace ```<port>``` with a port on your system, for example 80 and ```<datadir>``` with the directory on your system,
+where the test data resides, for example /public/data)
+```sh
+sudo docker run -p <port>:3000 -v <datadir>:/home/node/app/public/data -d jochendiekenbrock/image-comparison-backend
+```
+
+Run manually or for development:
+
 ```sh
 yarn install
-yarn start
+yarn start-dev
 ```
 
 ## License
