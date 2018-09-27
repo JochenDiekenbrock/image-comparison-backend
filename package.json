@@ -1,6 +1,6 @@
 {
     "name": "image-comparison-backend",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Backend of an image comparison solution. It reads the results of image comparisons performed by the image comparison frontend and allows to manage them.",
     "main": "dist/index.js",
     "license": "GPL-3.0-or-later",
@@ -12,8 +12,7 @@
         "ci",
         "continous-integration",
         "jenkins",
-        "image",
-        "comparison"
+        "image comparison"
     ],
     "author": "Jochen Diekenbrock",
     "scripts": {

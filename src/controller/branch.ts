@@ -1,15 +1,17 @@
 import * as Router from 'koa-router';
 
 import {Context} from 'koa';
-import {AcceptHelper, JsonHelper} from '../helper';
+import {AcceptHelper, FileHelper, JsonHelper} from '../helper';
 import {TestResult} from '../model';
 
 export class BranchController {
 
     public static async branch(ctx: Router.IRouterContext) {
         const branchName = ctx.params.name;
-        const results: TestResult[] = await JsonHelper.getTestResults(branchName);
-        await ctx.render('branch', {branchName, testResults: results});
+        const branchDictionary = FileHelper.getBranchDictionary();
+        const branchDir = branchDictionary[branchName];
+        const results: TestResult[] = await JsonHelper.getTestResults(branchDir);
+        await ctx.render('branch', {branchDir, testResults: results});
     }
 
     public static async accept(ctx: any) {

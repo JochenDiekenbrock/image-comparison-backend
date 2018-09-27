@@ -15,7 +15,8 @@ export class FileHelper {
                 return self.indexOf(value) === index;
             })
             .forEach((dirname) => {
-                const branchName = dirname.substring(dirname.lastIndexOf(path.sep) + 1);
+                // build branch name from the directory, filtering special characters
+                const branchName = dirname.replace(/[^\d\w]/g, '-');
                 branchMap[branchName] = dirname;
             })
         ;

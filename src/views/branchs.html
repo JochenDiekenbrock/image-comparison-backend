@@ -5,7 +5,7 @@
 <div>
     <ul class="list-unstyled">
         {% for branch, directory in branchDictionary %}
-        <li><a href="/branch/{{ branch }}">{{ branch }} in {{ directory }}</a></li>
+        <li><a href="/branch/{{ branch }}">{{ directory }}</a></li>
         {% else %}
         <li>No branches</li>
         {% endfor %}

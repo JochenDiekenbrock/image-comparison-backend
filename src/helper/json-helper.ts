@@ -6,9 +6,7 @@ import {TestResult, XmlTestResult} from '../model';
 import {FileHelper} from './file-helper';
 
 export class JsonHelper {
-    public static async getTestResults(branch: string): Promise<TestResult[]> {
-        const branchDictionary = FileHelper.getBranchDictionary();
-        const branchDir = branchDictionary[branch];
+    public static async getTestResults(branchDir: string): Promise<TestResult[]> {
         const xmls = FileHelper.getXmlFileNames(branchDir);
 
         const xmlFileDir = FileHelper.getBranchDirectoryFromProjectRoot(branchDir);
