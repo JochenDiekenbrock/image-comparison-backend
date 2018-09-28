@@ -15,9 +15,9 @@ export class BranchController {
     }
 
     public static async accept(ctx: any) {
-        const branchName = ctx.request.body.branch;
+        const branchDir = ctx.request.body.branchDir;
         const testName = ctx.request.body.name;
-        const result = await AcceptHelper.acceptTest(branchName, testName);
+        const result = await AcceptHelper.acceptTest(branchDir, testName);
         const response: Context = ctx.response;
         if (result.success) {
             response.status = 200;

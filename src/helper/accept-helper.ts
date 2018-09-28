@@ -6,9 +6,13 @@ import {FileHelper} from './file-helper';
 import {JsonHelper} from './json-helper';
 
 export class AcceptHelper {
-    public static async acceptTest(branch: string, testName: string): Promise<Result> {
+    public static async acceptTest(branchDir: string, testName: string): Promise<Result> {
         const dict = FileHelper.getBranchDictionary();
-        const xmlFileDir = FileHelper.getBranchDirectoryFromProjectRoot(dict[branch]);
+        if (!dict[branchDir]) {
+            throw new Error('Security Error, invalid branchDir');
+        }
+
+        const xmlFileDir = FileHelper.getBranchDirectoryFromProjectRoot(branchDir);
 
         const fileName = `${xmlFileDir}${path.sep}${testName}.xml`;
         let result = await AcceptHelper.setTestState(fileName);
@@ -16,7 +20,7 @@ export class AcceptHelper {
             return result;
         }
 
-        result = await AcceptHelper.copyNewImageToBase(fileName, dict[branch]);
+        result = await AcceptHelper.copyNewImageToBase(fileName, branchDir);
         if (!result.success) {
             return result;
         }
@@ -28,7 +32,7 @@ export class AcceptHelper {
         const testResult: TestResult = await JsonHelper.getTestResult(fileName, branchDir);
         try {
             await fs.promises.copyFile('public' + testResult.currentFile.file,
-                'public' + testResult.baseFile + '_neu');
+                'public' + testResult.baseFile);
         } catch (err) {
             return AcceptHelper.fail(String(err));
         }

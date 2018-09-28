@@ -1,11 +1,10 @@
 let httpRequest;
 let testName;
 
-function accept(branch, name) {
-    console.log({branch}, {name});
+function accept(branchDir, name) {
     let formData = new FormData();
     testName = name;
-    formData.append('branch', branch);
+    formData.append('branchDir', branchDir);
     formData.append('name', name);
     httpRequest = new XMLHttpRequest();
 
