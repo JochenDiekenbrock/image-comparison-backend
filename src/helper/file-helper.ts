@@ -1,14 +1,39 @@
 import * as glob from 'glob';
 import * as path from 'path';
 
-import {config} from '../config';
-import {BranchDictionary} from '../model';
+import { config } from '../config';
+import { BranchDictionary } from '../model';
 
 export class FileHelper {
     public static getBranchDictionary(): BranchDictionary {
-        const root = `public${path.sep}${config.dataDir}`;
+        const root = path.join('public', config.dataDir);
+        let branchMap = this.readBranchDirectory(root);
+        if (Object.keys(branchMap).length === 0) {
+            branchMap = this.readBranchDirectory(path.join('public', 'example-data'));
+        }
+
+        return branchMap;
+    }
+
+    public static getXmlFileNames(directory: string): string[] {
+        return glob.sync('*.xml', { cwd: FileHelper.getBranchDirectoryFromProjectRoot(directory), nocase: true });
+    }
+
+    /* full path starting at project root, e.g. 'public/data/project' */
+    public static getBranchDirectoryFromProjectRoot(branchDir: string) {
+        if (branchDir === 'example-master' || branchDir.startsWith('example-features')) {
+            return path.join('public', 'example-data', branchDir);
+        }
+        return path.join('public', config.dataDir, branchDir);
+    }
+
+    public static getImageDirectoryForHtml(branchDir: string) {
+        return path.join('/', config.dataDir, branchDir, 'images');
+    }
+
+    private static readBranchDirectory(rootDirectory: string) {
         const branchMap: BranchDictionary = {};
-        const branchDirs = glob.sync('**/*.xml', {cwd: root, nocase: true});
+        const branchDirs = glob.sync('**/*.xml', { cwd: rootDirectory, nocase: true });
         branchDirs
             .map((filename) => path.dirname(filename))
             .filter(function onlyUnique(value, index, self) {
@@ -18,22 +43,7 @@ export class FileHelper {
                 // build branch name from the directory, filtering special characters
                 const branchName = dirname.replace(/[^\d\w]/g, '-');
                 branchMap[branchName] = dirname;
-            })
-        ;
-
+            });
         return branchMap;
-    }
-
-    public static getXmlFileNames(directory: string): string[] {
-        return glob.sync('*.xml', {cwd: FileHelper.getBranchDirectoryFromProjectRoot(directory), nocase: true});
-    }
-
-    /* full path starting at project root, e.g. 'public/data/project' */
-    public static getBranchDirectoryFromProjectRoot(branchDir: string) {
-        return `public${path.sep}${config.dataDir}${path.sep}${branchDir}`;
-    }
-
-    public static getImageDirectoryForHtml(branchDir: string) {
-        return `/${config.dataDir}${path.sep}${branchDir}${path.sep}images`;
     }
 }
