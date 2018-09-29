@@ -10,13 +10,13 @@ export class BranchController {
         const branchDictionary = FileHelper.getBranchDictionary();
         const branchDir = branchDictionary[branchName];
         const results: TestResult[] = await JsonHelper.getTestResults(branchDir);
-        await ctx.render('branch', { branchDir, testResults: results });
+        await ctx.render('branch', { branchName, testResults: results });
     }
 
     public static async accept(ctx: any) {
-        const branchDir = ctx.request.body.branchDir;
+        const branchName = ctx.request.body.branchDir;
         const testName = ctx.request.body.name;
-        const result = await AcceptHelper.acceptTest(branchDir, testName);
+        const result = await AcceptHelper.acceptTest(branchName, testName);
         const response: Context = ctx.response;
         if (result.success) {
             response.status = 200;

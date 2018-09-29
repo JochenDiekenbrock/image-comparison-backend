@@ -30,7 +30,7 @@
         <td><a href="{{ result.baseFile }}">Base</a></td>
         <td><a href="{{ result.currentFile.file }}">Current</a></td>
         <td>{% if result.diffFile %}<a href="{{ result.diffFile }}">Diff</a>{% endif %}</td>
-        <td>{% if result.result == false %}<a id="a-{{ result.name }}" onclick="accept('{{ branchDir }}', '{{ result.name }}'); return false;" href="#"
+        <td>{% if result.result == false %}<a id="a-{{ result.name }}" onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;" href="#"
                                        class="fas fa-check fa-lg"></a>{% endif %}
         </td>
     </tr>
