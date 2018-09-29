@@ -11,7 +11,7 @@ export class AcceptHelper {
 
         const xmlFileDir = FileHelper.getBranchDirectoryFromProjectRoot(dict[branchName]);
 
-        const fileName = `${xmlFileDir}${path.sep}${testName}.xml`;
+        const fileName = path.join(xmlFileDir, `${testName}.xml`);
         let result = await AcceptHelper.setTestState(fileName);
         if (!result.success) {
             return result;
