@@ -21,7 +21,8 @@
         "format": "prettier --write './**/*.ts' '**/*.json'",
         "run-docker": "sudo docker run -p 80:3000 -v $(pwd)/public/data:/home/node/app/public/data -d jochendiekenbrock/image-comparison-backend",
         "start-dev": "cross-env NODE_ENV=development nodemon -e ts --exec ts-node src/server.ts",
-        "start": "cross-env NODE_ENV=production node dist/server.js"
+        "start": "cross-env NODE_ENV=production node dist/server.js",
+        "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
     },
     "devDependencies": {
         "@types/glob": "5.0.35",
@@ -33,6 +34,7 @@
         "@types/koa-views": "2.0.3",
         "@types/nunjucks": "3.1.0",
         "@types/xml2js": "0.4.3",
+        "conventional-changelog-cli": "^2.0.5",
         "cross-env": "5.2.0",
         "nodemon": "1.18.4",
         "prettier": "^1.14.3",
