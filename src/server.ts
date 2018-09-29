@@ -6,8 +6,8 @@ import * as views from 'koa-views';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 
-import {config} from './config';
-import {routes} from './routes';
+import { config } from './config';
+import { routes } from './routes';
 
 const app = new Koa();
 
@@ -17,16 +17,17 @@ app.on('error', (err) => {
 
 app.use(logger());
 
-const env = new nunjucks.Environment(
-    new nunjucks.FileSystemLoader(path.join('src', 'views')),
+const env = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join('src', 'views')));
+
+app.use(
+    views(path.join('src', 'views'), {
+        map: { html: 'nunjucks' },
+        extension: 'html',
+        options: {
+            nunjucksEnv: env
+        }
+    })
 );
-
-app.use(views(path.join('src', 'views'), {
-    map: {html: 'nunjucks'}, extension: 'html', options: {
-        nunjucksEnv: env,
-    },
-
-}));
 
 app.use(routes);
 

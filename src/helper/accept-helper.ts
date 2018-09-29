@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {Result, TestResult} from '../model';
-import {FileHelper} from './file-helper';
-import {JsonHelper} from './json-helper';
+import { Result, TestResult } from '../model';
+import { FileHelper } from './file-helper';
+import { JsonHelper } from './json-helper';
 
 export class AcceptHelper {
     public static async acceptTest(branchDir: string, testName: string): Promise<Result> {
@@ -25,23 +25,22 @@ export class AcceptHelper {
             return result;
         }
 
-        return {success: true};
+        return { success: true };
     }
 
     private static async copyNewImageToBase(fileName: string, branchDir: string): Promise<Result> {
         const testResult: TestResult = await JsonHelper.getTestResult(fileName, branchDir);
         try {
-            await fs.promises.copyFile('public' + testResult.currentFile.file,
-                'public' + testResult.baseFile);
+            await fs.promises.copyFile('public' + testResult.currentFile.file, 'public' + testResult.baseFile);
         } catch (err) {
             return AcceptHelper.fail(String(err));
         }
-        return {success: true};
+        return { success: true };
     }
 
     private static async setTestState(fileName: string): Promise<Result> {
         try {
-            let data: any = await fs.promises.readFile(fileName, {encoding: 'UTF8'});
+            let data: any = await fs.promises.readFile(fileName, { encoding: 'UTF8' });
             data = data.replace(/false/g, 'true');
 
             await fs.promises.writeFile(fileName, data, 'utf8');
@@ -49,11 +48,11 @@ export class AcceptHelper {
             return AcceptHelper.fail(String(err));
         }
 
-        return {success: true};
+        return { success: true };
     }
 
     private static fail(error: string): Result {
-        console.log({error});
-        return {success: false, error};
+        console.log({ error });
+        return { success: false, error };
     }
 }

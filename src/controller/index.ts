@@ -1,2 +1,2 @@
-export {BranchController} from './branch';
-export {MainController} from './main';
+export { BranchController } from './branch';
+export { MainController } from './main';

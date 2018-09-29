@@ -5,7 +5,7 @@ export interface Config {
 
 const config: Config = {
     port: +process.env.NODE_PORT || 3000,
-    dataDir: 'data',
+    dataDir: 'data'
 };
 
-export {config};
+export { config };

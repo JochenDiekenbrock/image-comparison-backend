@@ -42,7 +42,7 @@ export interface XmlTestResult {
             mode: string;
         };
         ScreenShot: Array<{
-            $: { id: string; success: string; expected: string; };
+            $: { id: string; success: string; expected: string };
             BaseFile: string[];
             DiffFile: string[];
             CurrFile: Array<{ _: string; $: { time: string } }>;
