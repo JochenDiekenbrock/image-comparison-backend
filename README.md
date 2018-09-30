@@ -38,6 +38,9 @@ yarn install
 yarn start-dev
 ```
 
+If no test result data is found in /public/data (or the data directory you specified in ```src/config.ts```),
+example data from /public/example-data is used.
+
 ## License
 
 [GPL-3.0-or-later](./LICENSE.txt)
