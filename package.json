@@ -15,6 +15,9 @@
         "image comparison"
     ],
     "author": "Jochen Diekenbrock",
+    "engines": {
+        "node": ">=10"
+    },
     "scripts": {
         "build-server": "tslint --project . && tsc",
         "build-docker": "sudo docker build -t jochendiekenbrock/image-comparison-backend .",
