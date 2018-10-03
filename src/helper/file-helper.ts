@@ -34,7 +34,7 @@ export class FileHelper {
         if (this.isExampleData(branchDir)) {
             return path.join('/', 'example-data', branchDir);
         }
-        return path.join('/', config.dataDir, branchDir, 'images');
+        return path.join('/', config.dataDir, branchDir);
     }
 
     private static isExampleData(branchDir: string) {
