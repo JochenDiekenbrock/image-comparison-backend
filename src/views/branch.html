@@ -23,16 +23,16 @@
     </thead>
     <tbody>
     {% for result in testResults %}
-    <tr id="tr-{{ result.testName }}" class="{{ 'table-success' if result.success else 'table-danger' }}">
+    <tr id="tr-{{ result.testFileName }}" class="{{ 'table-success' if result.success else 'table-danger' }}">
         <th scope="row" class="text-left">{{ result.testName }}</th>
         <td>{{ result.date | dateToIso }}</td>
-        <td id="td-{{ result.testName }}">{{ "success" if result.success else "failed" }}</td>
+        <td id="td-{{ result.testFileName }}">{{ "success" if result.success else "failed" }}</td>
         <td><a href="{{ result.baselineImage }}">Base</a></td>
         <td><a href="{{ result.actualImage }}">Current</a></td>
         <td>{% if result.diffImage %}<a href="{{ result.diffImage }}">Diff</a>{% endif %}</td>
         <td>{% if result.success == false %}
-            <a id="a-{{ result.testName }}"
-               onclick="accept('{{ branchName }}', '{{ result.testName }}'); return false;"
+            <a id="a-{{ result.testFileName }}"
+               onclick="accept('{{ branchName }}', '{{ result.testFileName }}'); return false;"
                href="#"
                class="fas fa-check fa-lg">
             </a>{% endif %}
