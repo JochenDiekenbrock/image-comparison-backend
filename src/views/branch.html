@@ -1,41 +1,54 @@
 {% extends "layout.html" %}
 
-{% block head %}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css"
-      integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css"
-      integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
-{% endblock %}
-
 {% block body %}
-<h1>Branch {{ branchDir }}</h1>
-<table class="table table-hover">
+<h1 class="text-center">Branch {{ branchName }}</h1>
+<table class="table table-hover table-bordered">
     <thead>
-    <tr>
+    <tr class="text-center">
         <th scope="col">Name</th>
         <th scope="col">Date</th>
         <th scope="col">Result</th>
         <th scope="col">Base</th>
         <th scope="col">Current</th>
         <th scope="col">Diff</th>
-        <th scope="col"><i class="fas fa-check"></i></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     {% for result in testResults %}
-    <tr id="tr-{{ result.testFileName }}" class="{{ 'table-success' if result.success else 'table-danger' }}">
-        <th scope="row" class="text-left" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
+    <tr id="tr-{{ result.testFileName }}">
+        <th scope="row" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
         <td>{{ result.date | dateToIso }}</td>
-        <td id="td-{{ result.testFileName }}">{{ "success" if result.success else "failed" }}</td>
-        <td><a href="{{ result.baselineImage }}">Base</a></td>
-        <td><a href="{{ result.actualImage }}">Current</a></td>
-        <td>{% if result.diffImage %}<a href="{{ result.diffImage }}">Diff</a>{% endif %}</td>
-        <td>{% if result.success == false %}
-            <a id="a-{{ result.testFileName }}"
-               onclick="accept('{{ branchName }}', '{{ result.testFileName }}'); return false;"
-               href="#"
-               class="fas fa-check fa-lg">
-            </a>{% endif %}
+        <td id="td-{{ result.testFileName }}" class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
+            {% if result.success == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
+            {% if result.success == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
+        </td>
+        <td class="text-center">
+            <a href="{{ result.baselineImage }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Base
+            </a>
+        </td>
+        <td class="text-center">
+            <a href="{{ result.actualImage }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Current
+            </a>
+        </td>
+        <td class="text-center">
+            {% if result.diffImage %}
+            <a href="{{ result.diffImage }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Diff
+            </a>
+            {% endif %}
+        </td>
+        <td class="text-center">
+            {% if result.success == false %}
+            <button id="a-{{ result.testFileName }}"
+                    onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;"
+                    class="btn btn-success fas fa-thumbs-up"></button>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
