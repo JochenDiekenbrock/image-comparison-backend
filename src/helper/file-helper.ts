@@ -38,10 +38,7 @@ export class FileHelper {
     }
 
     private static isExampleData(branchDir: string) {
-        return (
-            branchDir === 'example-master' ||
-            branchDir.startsWith('example-features')
-        );
+        return branchDir === 'example-master' || branchDir.startsWith('example-features');
     }
 
     private static readBranchDirectory(rootDirectory: string) {

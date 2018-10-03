@@ -10,11 +10,13 @@ export class JsonHelper {
 
         const testResultDir = FileHelper.getBranchDirectoryFromProjectRoot(branchDir);
 
-        return Promise.all(testResultFileNames.map((testResultFile) => {
-            const testResultFileWithPath = path.join(testResultDir, testResultFile);
+        return Promise.all(
+            testResultFileNames.map((testResultFile) => {
+                const testResultFileWithPath = path.join(testResultDir, testResultFile);
 
-            return JsonHelper.getTestResult(testResultFileWithPath, branchDir);
-        }));
+                return JsonHelper.getTestResult(testResultFileWithPath, branchDir);
+            })
+        );
     }
 
     public static async getTestResult(testResultFileWithPath: string, branchDir: string): Promise<TestResult> {
