@@ -26,9 +26,7 @@ export class JsonHelper {
         const imageDirectory = FileHelper.getImageDirectoryForHtml(branchDir);
         result.baselineImage = path.join(imageDirectory, result.baselineImage);
         result.actualImage = path.join(imageDirectory, result.actualImage);
-        if (!result.success) {
-            result.diffImage = result.diffImage ? path.join(imageDirectory, result.diffImage) : undefined;
-        }
+        result.diffImage = result.diffImage ? path.join(imageDirectory, result.diffImage) : undefined;
         result.date = new Date(result.date);
 
         return result;
