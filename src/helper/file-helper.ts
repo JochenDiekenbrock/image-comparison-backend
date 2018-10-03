@@ -2,7 +2,7 @@ import * as glob from 'glob';
 import * as path from 'path';
 
 import { config } from '../config';
-import { BranchDictionary } from '../model';
+import { BranchDictionary, TEST_RESULT_EXTENSION } from '../model';
 
 export class FileHelper {
     public static getBranchDictionary(): BranchDictionary {
@@ -16,7 +16,7 @@ export class FileHelper {
     }
 
     public static getTestResultFileNames(directory: string): string[] {
-        return glob.sync('*.test-result.json', {
+        return glob.sync(`*${TEST_RESULT_EXTENSION}`, {
             cwd: FileHelper.getBranchDirectoryFromProjectRoot(directory),
             nocase: true
         });
@@ -46,7 +46,7 @@ export class FileHelper {
 
     private static readBranchDirectory(rootDirectory: string) {
         const branchMap: BranchDictionary = {};
-        const branchDirs = glob.sync('**/*.test-result.json', { cwd: rootDirectory, nocase: true });
+        const branchDirs = glob.sync(`**/*${TEST_RESULT_EXTENSION}`, { cwd: rootDirectory, nocase: true });
         branchDirs
             .map((filename) => path.dirname(filename))
             .filter(function onlyUnique(value, index, self) {

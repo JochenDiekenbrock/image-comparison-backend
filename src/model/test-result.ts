@@ -21,3 +21,5 @@ export interface TestResult {
        */
     diffImage?: string;
 }
+
+export const TEST_RESULT_EXTENSION = '.test-result.json';
