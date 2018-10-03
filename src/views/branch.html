@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1 class="text-center">Branch {{ branchName }}</h1>
+<h1 class="text-center">Branch {{ branchDir }}</h1>
 <table class="table table-hover table-bordered">
     <thead>
     <tr class="text-center">
@@ -46,7 +46,7 @@
         <td class="text-center">
             {% if result.success == false %}
             <button id="a-{{ result.testFileName }}"
-                    onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;"
+                    onclick="accept('{{ branchName }}', '{{ result.testFileName }}'); return false;"
                     class="btn btn-success fas fa-thumbs-up"></button>
             {% endif %}
         </td>

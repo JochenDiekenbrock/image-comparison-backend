@@ -15,7 +15,7 @@ export class BranchController {
             return;
         }
         const results: TestResult[] = await JsonHelper.getTestResults(branchDir);
-        await ctx.render('branch', { branchName: branchDir, testResults: results });
+        await ctx.render('branch', { branchDir, branchName, testResults: results });
     }
 
     public static async accept(ctx: any) {
