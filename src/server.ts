@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import * as Koa from 'koa';
 import * as compress from 'koa-compress';
 import * as logger from 'koa-logger';
@@ -18,6 +19,7 @@ app.on('error', (err) => {
 app.use(logger());
 
 const env = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join('src', 'views')));
+env.addFilter('dateToIso', (date: Date) => format(date, 'HH:mm:ss dd.MM.yyyy'));
 
 app.use(
     views(path.join('src', 'views'), {
