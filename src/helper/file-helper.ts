@@ -15,25 +15,39 @@ export class FileHelper {
         return branchMap;
     }
 
-    public static getXmlFileNames(directory: string): string[] {
-        return glob.sync('*.xml', { cwd: FileHelper.getBranchDirectoryFromProjectRoot(directory), nocase: true });
+    public static getTestResultFileNames(directory: string): string[] {
+        return glob.sync('*.test-result.json', {
+            cwd: FileHelper.getBranchDirectoryFromProjectRoot(directory),
+            nocase: true
+        });
     }
 
     /* full path starting at project root, e.g. 'public/data/project' */
     public static getBranchDirectoryFromProjectRoot(branchDir: string) {
-        if (branchDir === 'example-master' || branchDir.startsWith('example-features')) {
+        if (this.isExampleData(branchDir)) {
             return path.join('public', 'example-data', branchDir);
         }
         return path.join('public', config.dataDir, branchDir);
     }
 
     public static getImageDirectoryForHtml(branchDir: string) {
+        if (this.isExampleData(branchDir)) {
+            return path.join('/', 'example-data', branchDir);
+        }
         return path.join('/', config.dataDir, branchDir, 'images');
+    }
+
+    private static isExampleData(branchDir: string) {
+        return (
+            branchDir === 'example-master' ||
+            branchDir.startsWith('example-features') ||
+            branchDir.startsWith('example-json')
+        );
     }
 
     private static readBranchDirectory(rootDirectory: string) {
         const branchMap: BranchDictionary = {};
-        const branchDirs = glob.sync('**/*.xml', { cwd: rootDirectory, nocase: true });
+        const branchDirs = glob.sync('**/*.test-result.json', { cwd: rootDirectory, nocase: true });
         branchDirs
             .map((filename) => path.dirname(filename))
             .filter(function onlyUnique(value, index, self) {

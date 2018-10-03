@@ -23,15 +23,19 @@
     </thead>
     <tbody>
     {% for result in testResults %}
-    <tr id="tr-{{ result.name }}" class="{{ 'table-success' if result.result else 'table-danger' }}">
-        <th scope="row" class="text-left">{{ result.name }}</th>
-        <td>{{ result.currentFile.date }}</td>
-        <td id="td-{{ result.name }}" >{{ "success" if result.result else "failed" }}</td>
-        <td><a href="{{ result.baseFile }}">Base</a></td>
-        <td><a href="{{ result.currentFile.file }}">Current</a></td>
-        <td>{% if result.diffFile %}<a href="{{ result.diffFile }}">Diff</a>{% endif %}</td>
-        <td>{% if result.result == false %}<a id="a-{{ result.name }}" onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;" href="#"
-                                       class="fas fa-check fa-lg"></a>{% endif %}
+    <tr id="tr-{{ result.testName }}" class="{{ 'table-success' if result.success else 'table-danger' }}">
+        <th scope="row" class="text-left">{{ result.testName }}</th>
+        <td>{{ result.date | dateToIso }}</td>
+        <td id="td-{{ result.testName }}">{{ "success" if result.success else "failed" }}</td>
+        <td><a href="{{ result.baselineImage }}">Base</a></td>
+        <td><a href="{{ result.actualImage }}">Current</a></td>
+        <td>{% if result.diffImage %}<a href="{{ result.diffImage }}">Diff</a>{% endif %}</td>
+        <td>{% if result.success == false %}
+            <a id="a-{{ result.testName }}"
+               onclick="accept('{{ branchName }}', '{{ result.testName }}'); return false;"
+               href="#"
+               class="fas fa-check fa-lg">
+            </a>{% endif %}
         </td>
     </tr>
     {% endfor %}

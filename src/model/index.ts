@@ -1,5 +1,4 @@
 export { BranchDictionary } from './branch-dictionary';
 export { Config } from './config';
-export { Result } from './result';
+export { RequestProcessingResult } from './request-processing-result';
 export { TestResult } from './test-result';
-export { XmlTestResult } from './xml-test-result';
