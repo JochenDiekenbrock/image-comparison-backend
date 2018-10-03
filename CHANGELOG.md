@@ -1,3 +1,25 @@
+## 1.0.0 (2018-10-03)
+
+* add date-fns, remove xml2js ([c3f5bd1](https://github.com/jochendiekenbrock/image-comparison-backend/commit/c3f5bd1))
+* add dateToIso nunchucks filter ([fcb4aa6](https://github.com/jochendiekenbrock/image-comparison-backend/commit/fcb4aa6))
+* add dependency to image-comparison-frontend ([ad2d062](https://github.com/jochendiekenbrock/image-comparison-backend/commit/ad2d062))
+* add lint script ([73d1e66](https://github.com/jochendiekenbrock/image-comparison-backend/commit/73d1e66))
+* display the test filename in the testname title ([4448609](https://github.com/jochendiekenbrock/image-comparison-backend/commit/4448609))
+* document the usage of example data ([f12787f](https://github.com/jochendiekenbrock/image-comparison-backend/commit/f12787f))
+* extract Config interface ([d29b2d5](https://github.com/jochendiekenbrock/image-comparison-backend/commit/d29b2d5))
+* fix handling of the diff image filename for real data ([2815a1b](https://github.com/jochendiekenbrock/image-comparison-backend/commit/2815a1b))
+* format ([e556d82](https://github.com/jochendiekenbrock/image-comparison-backend/commit/e556d82))
+* handle diff image correctly, if test was accepted ([0c66328](https://github.com/jochendiekenbrock/image-comparison-backend/commit/0c66328))
+* handle test-result.json in AcceptHelper ([58f45ec](https://github.com/jochendiekenbrock/image-comparison-backend/commit/58f45ec))
+* remove support for xml testresult files, handle image-comparison-frontend testresult.json files ([46aba2b](https://github.com/jochendiekenbrock/image-comparison-backend/commit/46aba2b))
+* replace xml example testdata with json example testdata ([4a767e6](https://github.com/jochendiekenbrock/image-comparison-backend/commit/4a767e6))
+* require Node >= 10 because fs.promises is used ([8b85752](https://github.com/jochendiekenbrock/image-comparison-backend/commit/8b85752))
+* update dependencies ([187b98f](https://github.com/jochendiekenbrock/image-comparison-backend/commit/187b98f))
+* use TEST_RESULT_EXTENSION ([1e2be8b](https://github.com/jochendiekenbrock/image-comparison-backend/commit/1e2be8b))
+* use TestResult definition from image-comparison-frontend ([5865552](https://github.com/jochendiekenbrock/image-comparison-backend/commit/5865552))
+
+
+
 ## 0.3.0 (2018-09-29)
 
 * add conventional-changelog ([e2b115e](https://github.com/jochendiekenbrock/image-comparison-backend/commit/e2b115e))
