@@ -1,8 +1,8 @@
+import { TestResult } from 'image-comparison-frontend';
+import { Context } from 'koa';
 import * as Router from 'koa-router';
 
-import { Context } from 'koa';
 import { AcceptHelper, FileHelper, JsonHelper } from '../helper';
-import { TestResult } from '../model';
 
 export class BranchController {
     public static async branch(ctx: Router.IRouterContext) {

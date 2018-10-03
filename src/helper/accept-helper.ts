@@ -1,23 +1,26 @@
 import * as fs from 'fs';
+import { TEST_RESULT_EXTENSION, TestResult } from 'image-comparison-frontend';
 import * as path from 'path';
 
-import { Result, TestResult } from '../model';
+import { RequestProcessingResult } from '../model';
 import { FileHelper } from './file-helper';
 import { JsonHelper } from './json-helper';
 
 export class AcceptHelper {
-    public static async acceptTest(branchName: string, testName: string): Promise<Result> {
+    public static async acceptTest(branchName: string, testFileName: string): Promise<RequestProcessingResult> {
         const dict = FileHelper.getBranchDictionary();
 
-        const xmlFileDir = FileHelper.getBranchDirectoryFromProjectRoot(dict[branchName]);
+        const testResultDir = FileHelper.getBranchDirectoryFromProjectRoot(dict[branchName]);
 
-        const fileName = path.join(xmlFileDir, `${testName}.xml`);
-        let result = await AcceptHelper.setTestState(fileName);
+        const testResultFileWithPath = path.join(testResultDir, `${testFileName}${TEST_RESULT_EXTENSION}`);
+
+        let result = await AcceptHelper.saveSuccess(testResultFileWithPath);
         if (!result.success) {
             return result;
         }
 
-        result = await AcceptHelper.copyNewImageToBase(fileName, dict[branchName]);
+        const testResult: TestResult = await JsonHelper.getTestResult(testResultFileWithPath, dict[branchName]);
+        result = await AcceptHelper.copyNewImageToBase(testResult);
         if (!result.success) {
             return result;
         }
@@ -25,22 +28,26 @@ export class AcceptHelper {
         return { success: true };
     }
 
-    private static async copyNewImageToBase(fileName: string, branchDir: string): Promise<Result> {
-        const testResult: TestResult = await JsonHelper.getTestResult(fileName, branchDir);
+    private static async copyNewImageToBase(testResult: TestResult): Promise<RequestProcessingResult> {
         try {
-            await fs.promises.copyFile('public' + testResult.currentFile.file, 'public' + testResult.baseFile);
+            await fs.promises.copyFile(
+                path.join('public', testResult.actualImage),
+                path.join('public', testResult.baselineImage)
+            );
         } catch (err) {
             return AcceptHelper.fail(String(err));
         }
         return { success: true };
     }
 
-    private static async setTestState(fileName: string): Promise<Result> {
+    private static async saveSuccess(testResultFileWithPath: string): Promise<RequestProcessingResult> {
         try {
-            let data: any = await fs.promises.readFile(fileName, { encoding: 'UTF8' });
-            data = data.replace(/false/g, 'true');
+            const content = await fs.promises.readFile(testResultFileWithPath, { encoding: 'utf8' });
+            const testResult: TestResult = JSON.parse(content);
 
-            await fs.promises.writeFile(fileName, data, 'utf8');
+            testResult.success = true;
+
+            await fs.promises.writeFile(testResultFileWithPath, JSON.stringify(testResult, undefined, 4), 'utf8');
         } catch (err) {
             return AcceptHelper.fail(String(err));
         }
@@ -48,7 +55,7 @@ export class AcceptHelper {
         return { success: true };
     }
 
-    private static fail(error: string): Result {
+    private static fail(error: string): RequestProcessingResult {
         console.log({ error });
         return { success: false, error };
     }

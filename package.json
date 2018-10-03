@@ -1,6 +1,6 @@
 {
     "name": "image-comparison-backend",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "description": "Backend of an image comparison solution. It reads the results of image comparisons performed by the image comparison frontend and allows to manage them.",
     "main": "dist/index.js",
     "license": "GPL-3.0-or-later",
@@ -15,34 +15,39 @@
         "image comparison"
     ],
     "author": "Jochen Diekenbrock",
+    "engines": {
+        "node": ">=10"
+    },
     "scripts": {
         "build-server": "tslint --project . && tsc",
         "build-docker": "sudo docker build -t jochendiekenbrock/image-comparison-backend .",
         "format": "prettier --write './**/*.ts' '**/*.json'",
+        "lint": "tslint --project .",
         "run-docker": "sudo docker run -p 80:3000 -v $(pwd)/public/data:/home/node/app/public/data -d jochendiekenbrock/image-comparison-backend",
         "start-dev": "cross-env NODE_ENV=development nodemon -e ts --exec ts-node src/server.ts",
         "start": "cross-env NODE_ENV=production node dist/server.js",
         "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
     },
     "devDependencies": {
-        "@types/glob": "5.0.35",
+        "@types/glob": "7.1.1",
         "@types/koa": "2.0.46",
         "@types/koa-compress": "2.0.8",
         "@types/koa-logger": "3.1.0",
-        "@types/koa-router": "7.0.31",
+        "@types/koa-router": "7.0.32",
         "@types/koa-static": "4.0.0",
         "@types/koa-views": "2.0.3",
         "@types/nunjucks": "3.1.0",
-        "@types/xml2js": "0.4.3",
         "conventional-changelog-cli": "^2.0.5",
         "cross-env": "5.2.0",
+        "image-comparison-frontend": "^1.0.2",
         "nodemon": "1.18.4",
         "prettier": "^1.14.3",
         "ts-node": "7.0.1",
         "tslint": "5.11.0",
-        "typescript": "3.0.3"
+        "typescript": "3.1.1"
     },
     "dependencies": {
+        "date-fns": "^2.0.0-alpha.20",
         "glob": "7.1.3",
         "koa": "2.5.3",
         "koa-body": "4.0.4",
@@ -51,7 +56,6 @@
         "koa-router": "7.4.0",
         "koa-static": "5.0.0",
         "koa-views": "6.1.4",
-        "nunjucks": "3.1.3",
-        "xml2js": "0.4.19"
+        "nunjucks": "3.1.3"
     }
 }

@@ -18,7 +18,7 @@ the image comparison backend offers an option to accept the new image. The test 
 and the new image will be used from now on as new base image.
 
 Requirements:
- * Node v8 (if you want to develop or run without docker)
+ * Node v10 (if you want to develop or run without docker)
  * Docker (if using the docker image (recommended))
 
 ## Getting Started

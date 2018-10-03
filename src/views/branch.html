@@ -16,36 +16,36 @@
     </thead>
     <tbody>
     {% for result in testResults %}
-    <tr id="tr-{{ result.name }}">
-        <th scope="row">{{ result.name }}</th>
-        <td>{{ result.currentFile.date }}</td>
-        <td id="td-{{ result.name }}" class="text-center {{ 'table-success' if result.result else 'table-danger' }}">
+    <tr id="tr-{{ result.testFileName }}">
+        <th scope="row" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
+        <td>{{ result.date | dateToIso }}</td>
+        <td id="td-{{ result.testFileName }}" class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
             {% if result.result == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
             {% if result.result == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
         <td class="text-center">
-            <a href="{{ result.baseFile }}" target="_blank"
+            <a href="{{ result.baselineImage }}" target="_blank"
                class="btn btn-secondary btn-sm" role="button">
                 <span class="fas fa-external-link-alt"></span> Base
             </a>
         </td>
         <td class="text-center">
-            <a href="{{ result.currentFile.file }}" target="_blank"
+            <a href="{{ result.actualImage }}" target="_blank"
                class="btn btn-secondary btn-sm" role="button">
                 <span class="fas fa-external-link-alt"></span> Current
             </a>
         </td>
         <td class="text-center">
-            {% if result.diffFile %}
-            <a href="{{ result.diffFile }}" target="_blank"
+            {% if result.diffImage %}
+            <a href="{{ result.diffImage }}" target="_blank"
                class="btn btn-secondary btn-sm" role="button">
                 <span class="fas fa-external-link-alt"></span> Diff
             </a>
             {% endif %}
         </td>
         <td class="text-center">
-            {% if result.result == false %}
-            <button id="a-{{ result.name }}"
+            {% if result.success == false %}
+            <button id="a-{{ result.testFileName }}"
                     onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;"
                     class="btn btn-success fas fa-thumbs-up"></button>
             {% endif %}
