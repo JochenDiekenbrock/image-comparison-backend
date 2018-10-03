@@ -24,7 +24,7 @@
     <tbody>
     {% for result in testResults %}
     <tr id="tr-{{ result.testFileName }}" class="{{ 'table-success' if result.success else 'table-danger' }}">
-        <th scope="row" class="text-left">{{ result.testName }}</th>
+        <th scope="row" class="text-left" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
         <td>{{ result.date | dateToIso }}</td>
         <td id="td-{{ result.testFileName }}">{{ "success" if result.success else "failed" }}</td>
         <td><a href="{{ result.baselineImage }}">Base</a></td>
