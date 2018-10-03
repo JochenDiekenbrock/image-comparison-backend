@@ -4,7 +4,7 @@
 <h1 class="text-center">Branch {{ branchName }}</h1>
 <table class="table table-hover table-bordered">
     <thead>
-    <tr>
+    <tr class="text-center">
         <th scope="col">Name</th>
         <th scope="col">Date</th>
         <th scope="col">Result</th>
@@ -23,14 +23,31 @@
             {% if result.result == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
             {% if result.result == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
-        <td><a href="{{ result.baseFile }}">Base</a></td>
-        <td><a href="{{ result.currentFile.file }}">Current</a></td>
-        <td>{% if result.diffFile %}<a href="{{ result.diffFile }}">Diff</a>{% endif %}</td>
+        <td class="text-center">
+            <a href="{{ result.baseFile }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Base
+            </a>
+        </td>
+        <td class="text-center">
+            <a href="{{ result.currentFile.file }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Current
+            </a>
+        </td>
+        <td class="text-center">
+            {% if result.diffFile %}
+            <a href="{{ result.diffFile }}" target="_blank"
+               class="btn btn-secondary btn-sm" role="button">
+                <span class="fas fa-external-link-alt"></span> Diff
+            </a>
+            {% endif %}
+        </td>
         <td class="text-center">
             {% if result.result == false %}
             <button id="a-{{ result.name }}"
                     onclick="accept('{{ branchName }}', '{{ result.name }}'); return false;"
-                    class="btn btn-success fas fa-thumbs-up fa-lg"></button>
+                    class="btn btn-success fas fa-thumbs-up"></button>
             {% endif %}
         </td>
     </tr>
