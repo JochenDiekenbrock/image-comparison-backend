@@ -1,3 +1,18 @@
+## 1.1.0 (2018-10-03)
+
+* Added some styling for overview list and branch details table ([d181de0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/d181de0))
+* Added styling for links to images in table ([ceacb68](https://github.com/jochendiekenbrock/image-comparison-backend/commit/ceacb68))
+* delete example testdata ([a0e2e4a](https://github.com/jochendiekenbrock/image-comparison-backend/commit/a0e2e4a))
+* documentation ([2d444eb](https://github.com/jochendiekenbrock/image-comparison-backend/commit/2d444eb))
+* fix accepting ([02abee7](https://github.com/jochendiekenbrock/image-comparison-backend/commit/02abee7))
+* Fix issue after merging latest version of master branch ([0cc41a5](https://github.com/jochendiekenbrock/image-comparison-backend/commit/0cc41a5))
+* fix updating the list after accepting ([c3085c0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/c3085c0))
+* Show correct branch name on detail page ([bd7a4c0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/bd7a4c0))
+* show error message, if unknown branch is chosen ([84b8fbf](https://github.com/jochendiekenbrock/image-comparison-backend/commit/84b8fbf))
+* update image-comparison-frontend ([84d9465](https://github.com/jochendiekenbrock/image-comparison-backend/commit/84d9465))
+
+
+
 ## 1.0.0 (2018-10-03)
 
 * add date-fns, remove xml2js ([c3f5bd1](https://github.com/jochendiekenbrock/image-comparison-backend/commit/c3f5bd1))
