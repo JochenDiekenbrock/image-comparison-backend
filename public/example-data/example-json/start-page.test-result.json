@@ -1,8 +1,0 @@
-{
-    "baselineImage": "./baseline/start-page-chrome-1050x880-dpr-1.png",
-    "actualImage": "./actual/start-page-chrome-1050x880-dpr-1.png",
-    "success": true,
-    "date": "2018-10-02T22:16:03.784Z",
-    "testName": "startPage",
-    "testFileName": "start-page"
-}
