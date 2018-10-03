@@ -28,13 +28,11 @@ function handleResponse() {
 }
 
 function setToSuccess(name) {
-    let elem = document.getElementById('tr-' + name);
+    let elem = document.getElementById('td-' + name);
+    elem.innerHTML = '<i class="fas fa-check fa-lg"></i>';
     elem.classList.remove('table-danger');
     elem.classList.add('table-success');
 
-    elem = document.getElementById('td-' + name);
-    elem.innerText = 'success';
-
-    elem = document.getElementById('a-' + name);
-    elem.classList.remove('fa-check');
+    elem = document.getElementById('btn-' + name);
+    elem.parentNode.removeChild(elem);
 }

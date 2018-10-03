@@ -19,7 +19,8 @@
     <tr id="tr-{{ result.testFileName }}">
         <th scope="row" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
         <td>{{ result.date | dateToIso }}</td>
-        <td id="td-{{ result.testFileName }}" class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
+        <td id="td-{{ result.testFileName }}"
+            class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
             {% if result.success == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
             {% if result.success == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
@@ -45,9 +46,10 @@
         </td>
         <td class="text-center">
             {% if result.success == false %}
-            <button id="a-{{ result.testFileName }}"
+            <button id="btn-{{ result.testFileName }}"
                     onclick="accept('{{ branchName }}', '{{ result.testFileName }}'); return false;"
-                    class="btn btn-success fas fa-thumbs-up"></button>
+                    class="btn btn-success fas fa-thumbs-up">
+            </button>
             {% endif %}
         </td>
     </tr>
