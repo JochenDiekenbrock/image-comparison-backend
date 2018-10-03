@@ -1805,10 +1805,10 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-image-comparison-frontend@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/image-comparison-frontend/-/image-comparison-frontend-1.0.2.tgz#f38fb0ec2cdd427486e24d0795343ff1008b76c4"
-  integrity sha512-f/eJrXWKFq+0PyMTYhxknp7vWmcVkVFCGu/HKRGIBOLDP/nQHAoaYu2tzfw7sqDUyL8Enf8HYPV2LIubHWj+Jg==
+image-comparison-frontend@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/image-comparison-frontend/-/image-comparison-frontend-1.0.3.tgz#6a7c53ace5ae22ec3a978fef31b1224ebfe55878"
+  integrity sha512-B75HZ7+XPL9NiPtIU/oPE6OJ8Z27Cv7VYof07VhxTOXmTY81gbPoaRYbPADF4Jx65Fc3/CDfg7zY4PWYL/ifsQ==
   dependencies:
     dashify "^1.0.0"
     protractor "^5.4.1"
