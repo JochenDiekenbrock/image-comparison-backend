@@ -40,8 +40,7 @@ export class FileHelper {
     private static isExampleData(branchDir: string) {
         return (
             branchDir === 'example-master' ||
-            branchDir.startsWith('example-features') ||
-            branchDir.startsWith('example-json')
+            branchDir.startsWith('example-features')
         );
     }
 

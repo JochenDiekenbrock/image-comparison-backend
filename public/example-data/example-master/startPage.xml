@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<VisualRegressionTest name="startPage" imageName="startPage" result="true" mode="TEST">
-  <ScreenShot id="startPage" success="true" expected="startPage">
-    <BaseFile>baseline/startPage-chrome-1050x880-dpr-1.png</BaseFile>
-    <CurrFile time="28.9.2018 21:10">actual/startPage-chrome-1050x880-dpr-1.png</CurrFile>
-  </ScreenShot>
-</VisualRegressionTest>

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<VisualRegressionTest name="anElement" imageName="anElement" result="false" mode="TEST">
-  <ScreenShot id="anElement" success="false" expected="anElement">
-    <BaseFile>baseline/anElement-chrome-1050x880-dpr-1.png</BaseFile>
-    <CurrFile time="28.9.2018 21:10">actual/anElement-chrome-1050x880-dpr-1.png</CurrFile>
-      <DiffFile>diff/anElement-chrome-1050x880-dpr-1.png</DiffFile>
-  </ScreenShot>
-</VisualRegressionTest>
