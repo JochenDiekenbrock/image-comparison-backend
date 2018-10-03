@@ -20,8 +20,8 @@
         <th scope="row" title="filename: {{ result.testFileName }}">{{ result.testName }}</th>
         <td>{{ result.date | dateToIso }}</td>
         <td id="td-{{ result.testFileName }}" class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
-            {% if result.result == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
-            {% if result.result == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
+            {% if result.success == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
+            {% if result.success == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
         <td class="text-center">
             <a href="{{ result.baselineImage }}" target="_blank"
