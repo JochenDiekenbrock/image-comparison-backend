@@ -1,7 +1,8 @@
 import * as fs from 'fs';
+import { TEST_RESULT_EXTENSION, TestResult } from 'image-comparison-frontend';
 import * as path from 'path';
 
-import { RequestProcessingResult, TEST_RESULT_EXTENSION, TestResult } from '../model';
+import { RequestProcessingResult } from '../model';
 import { FileHelper } from './file-helper';
 import { JsonHelper } from './json-helper';
 

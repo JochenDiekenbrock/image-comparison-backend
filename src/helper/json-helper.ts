@@ -1,7 +1,7 @@
 import * as fs from 'fs';
+import { TestResult } from 'image-comparison-frontend';
 import * as path from 'path';
 
-import { TestResult } from '../model';
 import { FileHelper } from './file-helper';
 
 export class JsonHelper {

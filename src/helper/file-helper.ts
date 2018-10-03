@@ -1,8 +1,9 @@
 import * as glob from 'glob';
+import { TEST_RESULT_EXTENSION } from 'image-comparison-frontend';
 import * as path from 'path';
 
 import { config } from '../config';
-import { BranchDictionary, TEST_RESULT_EXTENSION } from '../model';
+import { BranchDictionary } from '../model';
 
 export class FileHelper {
     public static getBranchDictionary(): BranchDictionary {
