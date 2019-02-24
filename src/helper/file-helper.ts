@@ -1,11 +1,44 @@
+import * as fs from 'fs';
 import * as glob from 'glob';
-import { TEST_RESULT_EXTENSION } from 'image-comparison-frontend';
+import { TEST_RESULT_EXTENSION, TestResult } from 'image-comparison-frontend';
 import * as path from 'path';
 
 import { config } from '../config';
-import { BranchDictionary } from '../model';
+import { BranchDictionary, RequestProcessingResult } from '../model';
+import { JsonHelper } from './json-helper';
 
 export class FileHelper {
+    public static async deleteTest(branchName: string, testFileName: string): Promise<RequestProcessingResult> {
+        const dict = FileHelper.getBranchDictionary();
+        const testResultDir = FileHelper.getBranchDirectoryFromProjectRoot(dict[branchName]);
+        const testResultFileWithPath = path.join(testResultDir, `${testFileName}${TEST_RESULT_EXTENSION}`);
+        const testResult: TestResult = await JsonHelper.getTestResult(testResultFileWithPath, dict[branchName]);
+
+        if (testResult.actualImage) {
+            await FileHelper.delete(path.join('public', testResult.actualImage));
+        }
+
+        if (testResult.baselineImage) {
+            await FileHelper.delete(path.join('public', testResult.baselineImage));
+        }
+
+        if (testResult.diffImage) {
+            await FileHelper.delete(path.join('public', testResult.diffImage));
+        }
+
+        await FileHelper.delete(testResultFileWithPath);
+
+        return { success: true };
+    }
+
+    public static async copyNewImageToBase(testResult: TestResult): Promise<RequestProcessingResult> {
+        await fs.promises.copyFile(
+            path.join('public', testResult.actualImage),
+            path.join('public', testResult.baselineImage)
+        );
+        return { success: true };
+    }
+
     public static getBranchDictionary(): BranchDictionary {
         const root = path.join('public', config.dataDir);
         let branchMap = this.readBranchDirectory(root);
@@ -56,5 +89,13 @@ export class FileHelper {
                 branchMap[branchName] = dirname;
             });
         return branchMap;
+    }
+
+    private static async delete(fileName: string): Promise<void> {
+        try {
+            await fs.promises.unlink(fileName);
+        } catch (ignored) {
+            //
+        }
     }
 }

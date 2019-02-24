@@ -30,4 +30,17 @@ export class BranchController {
             response.message = result.error;
         }
     }
+
+    public static async delete(ctx: any) {
+        const branchName = ctx.request.body.branchDir;
+        const testName = ctx.request.body.name;
+        const result = await FileHelper.deleteTest(branchName, testName);
+        const response: Response = ctx.response;
+        if (result.success) {
+            response.status = 200;
+        } else {
+            response.status = 500;
+            response.message = result.error;
+        }
+    }
 }

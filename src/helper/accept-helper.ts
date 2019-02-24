@@ -4,6 +4,7 @@ import * as path from 'path';
 
 import { RequestProcessingResult } from '../model';
 import { FileHelper } from './file-helper';
+import { Helper } from './helper';
 import { JsonHelper } from './json-helper';
 
 export class AcceptHelper {
@@ -14,30 +15,17 @@ export class AcceptHelper {
 
         const testResultFileWithPath = path.join(testResultDir, `${testFileName}${TEST_RESULT_EXTENSION}`);
 
-        let result = await AcceptHelper.saveSuccess(testResultFileWithPath);
+        const result = await AcceptHelper.saveSuccess(testResultFileWithPath);
         if (!result.success) {
             return result;
         }
 
         const testResult: TestResult = await JsonHelper.getTestResult(testResultFileWithPath, dict[branchName]);
-        result = await AcceptHelper.copyNewImageToBase(testResult);
-        if (!result.success) {
-            return result;
-        }
-
-        return { success: true };
-    }
-
-    private static async copyNewImageToBase(testResult: TestResult): Promise<RequestProcessingResult> {
         try {
-            await fs.promises.copyFile(
-                path.join('public', testResult.actualImage),
-                path.join('public', testResult.baselineImage)
-            );
+            return await FileHelper.copyNewImageToBase(testResult);
         } catch (err) {
-            return AcceptHelper.fail(String(err));
+            return Helper.fail(String(err));
         }
-        return { success: true };
     }
 
     private static async saveSuccess(testResultFileWithPath: string): Promise<RequestProcessingResult> {
@@ -49,14 +37,9 @@ export class AcceptHelper {
 
             await fs.promises.writeFile(testResultFileWithPath, JSON.stringify(testResult, undefined, 4), 'utf8');
         } catch (err) {
-            return AcceptHelper.fail(String(err));
+            return Helper.fail(String(err));
         }
 
         return { success: true };
-    }
-
-    private static fail(error: string): RequestProcessingResult {
-        console.log({ error });
-        return { success: false, error };
     }
 }

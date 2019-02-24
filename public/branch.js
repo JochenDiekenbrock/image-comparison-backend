@@ -2,6 +2,14 @@ let httpRequest;
 let testName;
 
 function accept(branchDir, name) {
+    sendRequest('/api/accept', branchDir, name, setToSuccess);
+}
+
+function deleteTest(branchDir, name) {
+    sendRequest('/api/delete', branchDir, name, deleteRow);
+}
+
+function sendRequest(action, branchDir, name, onSuccess) {
     let formData = new FormData();
     testName = name;
     formData.append('branchDir', branchDir);
@@ -12,18 +20,29 @@ function accept(branchDir, name) {
         alert('Giving up :( Cannot create an XMLHTTP instance');
         return false;
     }
-    httpRequest.onreadystatechange = handleResponse;
-    httpRequest.open('POST', '/api/accept');
+    httpRequest.onreadystatechange = handleResponseFunc(onSuccess);
+    httpRequest.open('POST', action);
     httpRequest.send(formData);
 }
 
-function handleResponse() {
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status >= 200 && httpRequest.status < 300) {
-            setToSuccess(testName);
-        } else {
-            alert(httpRequest.response);
+function handleResponseFunc(onSuccess) {
+    return function handleResponse() {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status >= 200 && httpRequest.status < 300) {
+                if (onSuccess) {
+                    onSuccess(testName);
+                }
+            } else {
+                alert(httpRequest.response);
+            }
         }
+    };
+}
+
+function deleteRow(name) {
+    let row = document.getElementById('tr-' + name);
+    if (row) {
+        row.parentNode.removeChild(row);
     }
 }
 
@@ -34,5 +53,7 @@ function setToSuccess(name) {
     elem.classList.add('table-success');
 
     elem = document.getElementById('btn-' + name);
-    elem.parentNode.removeChild(elem);
+    if (elem) {
+        elem.parentNode.removeChild(elem);
+    }
 }
