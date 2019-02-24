@@ -3,7 +3,7 @@ import * as Router from 'koa-router';
 import { FileHelper } from '../helper';
 
 export class MainController {
-    public static async home(ctx: Router.IRouterContext) {
+    public static async home(ctx: Router.RouterContext) {
         const dict = FileHelper.getBranchDictionary();
         const branchCount = Object.keys(dict).length;
         if (branchCount === 0) {
