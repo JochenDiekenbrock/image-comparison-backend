@@ -1,10 +1,11 @@
 import { TestResult } from 'image-comparison-frontend';
-import { Context, Response } from 'koa';
+import { Response } from 'koa';
+import * as Router from 'koa-router';
 
 import { AcceptHelper, FileHelper, JsonHelper } from '../helper';
 
 export class BranchController {
-    public static async branch(ctx: Context) {
+    public static async branch(ctx: Router.RouterContext) {
         const branchName = ctx.params.name;
         const branchDictionary = FileHelper.getBranchDictionary();
         const branchDir = branchDictionary[branchName];
@@ -18,7 +19,7 @@ export class BranchController {
         await ctx.render('branch', { branchDir, branchName, testResults: results });
     }
 
-    public static async accept(ctx: any) {
+    public static async accept(ctx: Router.RouterContext) {
         const branchName = ctx.request.body.branchDir;
         const testName = ctx.request.body.name;
         const result = await AcceptHelper.acceptTest(branchName, testName);
@@ -31,7 +32,7 @@ export class BranchController {
         }
     }
 
-    public static async delete(ctx: any) {
+    public static async delete(ctx: Router.RouterContext) {
         const branchName = ctx.request.body.branchDir;
         const testName = ctx.request.body.name;
         const result = await FileHelper.deleteTest(branchName, testName);
