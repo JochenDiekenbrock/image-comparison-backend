@@ -1,3 +1,11 @@
+## 1.2.0 (2019-02-24)
+
+* add delete option ([7008451](https://github.com/jochendiekenbrock/image-comparison-backend/commit/7008451))
+* add popovers to display the images when hovering over the image buttons ([e13efa9](https://github.com/jochendiekenbrock/image-comparison-backend/commit/e13efa9))
+* update dependencies ([a4a99d5](https://github.com/jochendiekenbrock/image-comparison-backend/commit/a4a99d5))
+
+
+
 ## 1.1.0 (2018-10-03)
 
 * Added some styling for overview list and branch details table ([d181de0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/d181de0))
