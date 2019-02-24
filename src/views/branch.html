@@ -30,22 +30,43 @@
             {% if result.success == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
         <td class="text-center">
-            <a href="{{ result.baselineImage }}" target="_blank"
-               class="btn btn-secondary btn-sm" role="button">
-                <span class="fas fa-external-link-alt"></span> Base
+            <a href="{{ result.baselineImage }}"
+               target="_blank"
+               class="btn btn-secondary btn-sm"
+               role="button"
+               data-content="<img src='{{ result.baselineImage }}' style='max-width:100%'/>"
+               data-html="true"
+               data-placement="left"
+               data-toggle="popover"
+               data-trigger="hover"
+            ><span class="fas fa-external-link-alt"></span> Base
             </a>
         </td>
         <td class="text-center">
-            <a href="{{ result.actualImage }}" target="_blank"
-               class="btn btn-secondary btn-sm" role="button">
-                <span class="fas fa-external-link-alt"></span> Current
+            <a href="{{ result.actualImage }}"
+               target="_blank"
+               class="btn btn-secondary btn-sm"
+               role="button"
+               data-content="<img src='{{ result.actualImage }}' style='max-width:100%'/>"
+               data-html="true"
+               data-placement="right"
+               data-toggle="popover"
+               data-trigger="hover"
+            ><span class="fas fa-external-link-alt"></span> Current
             </a>
         </td>
         <td class="text-center">
             {% if result.diffImage %}
-            <a href="{{ result.diffImage }}" target="_blank"
-               class="btn btn-secondary btn-sm" role="button">
-                <span class="fas fa-external-link-alt"></span> Diff
+            <a href="{{ result.diffImage }}"
+               target="_blank"
+               class="btn btn-secondary btn-sm"
+               role="button"
+               data-content="<img src='{{ result.diffImage }}' style='max-width:100%'/>"
+               data-html="true"
+               data-placement="right"
+               data-toggle="popover"
+               data-trigger="hover"
+            ><span class="fas fa-external-link-alt"></span> Diff
             </a>
             {% endif %}
         </td>
@@ -65,4 +86,10 @@
 
 {% block footer %}
 <script src="/branch.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 {% endblock %}

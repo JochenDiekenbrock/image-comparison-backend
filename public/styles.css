@@ -17,3 +17,7 @@ h1 {
 .table-hover tr:hover .table-danger {
     background-color: #f1b0b7;
 }
+
+.popover{
+    max-width:500px;
+}
