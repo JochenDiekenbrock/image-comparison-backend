@@ -1,3 +1,11 @@
+## <small>1.2.1 (2019-02-24)</small>
+
+* fix typing ([272b4e0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/272b4e0))
+* regenerate yarn.lock ([17f95d7](https://github.com/jochendiekenbrock/image-comparison-backend/commit/17f95d7))
+* update release checklist ([aecc7d7](https://github.com/jochendiekenbrock/image-comparison-backend/commit/aecc7d7))
+
+
+
 ## 1.2.0 (2019-02-24)
 
 * add delete option ([7008451](https://github.com/jochendiekenbrock/image-comparison-backend/commit/7008451))
