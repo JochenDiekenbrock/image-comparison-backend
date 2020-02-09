@@ -57,3 +57,11 @@ function setToSuccess(name) {
         elem.parentNode.removeChild(elem);
     }
 }
+
+function dateSorter(a, b, rowA, rowB) {
+
+    const dateA = rowA._date_data.date;
+    const dateB = rowB._date_data.date;
+
+    return dateB - dateA;
+}

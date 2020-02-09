@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import * as Koa from 'koa';
 import * as compress from 'koa-compress';
 import * as logger from 'koa-logger';
@@ -12,7 +12,7 @@ import { routes } from './routes';
 
 const app = new Koa();
 
-app.on('error', (err) => {
+app.on('error', (err: any) => {
     console.log(err);
 });
 
@@ -20,6 +20,9 @@ app.use(logger());
 
 const env = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join('src', 'views')));
 env.addFilter('dateToIso', (date: Date) => format(date, 'HH:mm:ss dd.MM.yyyy'));
+env.addFilter('formatDistanceToNow', (date: Date) =>
+    formatDistanceToNow(date, { addSuffix: true, includeSeconds: true })
+);
 
 app.use(
     views(path.join('src', 'views'), {

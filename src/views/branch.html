@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
 <h1 class="text-center">Branch {{ branchDir }}</h1>
 <table
     class="table table-hover table-bordered"
@@ -10,7 +11,7 @@
     <tr class="text-center">
         <th scope="col" data-field="name" data-sortable="true">Name</th>
         <th scope="col"></th>
-        <th scope="col" data-field="date" data-sortable="true">Date</th>
+        <th scope="col" data-field="date" data-sortable="true" data-sorter="dateSorter">Date</th>
         <th scope="col" data-field="result" data-sortable="true">Result</th>
         <th scope="col">Base</th>
         <th scope="col">Current</th>
@@ -21,19 +22,24 @@
     <tbody>
     {% for result in testResults %}
     <tr id="tr-{{ result.testFileName }}">
+
         <td scope="row" title="filename: {{ result.testFileName }}">{{ result.testName }}</td>
+
         <td>
             <button id="btn-delete-{{ result.testFileName }}"
                     onclick="deleteTest('{{ branchName }}', '{{ result.testFileName }}'); return false;"
                     class="btn btn-danger fas fa-trash">
             </button>
         </td>
-        <td data-date="{{ result.date.getTime() }}">{{ result.date | dateToIso }}</td>
+
+        <td title="{{ result.date | dateToIso }}" data-date="{{ result.date.getTime() }}">{{ result.date | formatDistanceToNow }}</td>
+
         <td id="td-{{ result.testFileName }}"
             class="text-center {{ 'table-success' if result.success else 'table-danger' }}">
             {% if result.success == false %}<i class="fas fa-times fa-lg"></i>{% endif %}
             {% if result.success == true %}<i class="fas fa-check fa-lg"></i>{% endif %}
         </td>
+
         <td class="text-center">
             <a href="{{ result.baselineImage }}"
                target="_blank"
@@ -47,6 +53,7 @@
             ><span class="fas fa-external-link-alt"></span> Base
             </a>
         </td>
+
         <td class="text-center">
             <a href="{{ result.actualImage }}"
                target="_blank"
@@ -60,6 +67,7 @@
             ><span class="fas fa-external-link-alt"></span> Current
             </a>
         </td>
+
         <td class="text-center">
             {% if result.diffImage %}
             <a href="{{ result.diffImage }}"
@@ -75,6 +83,7 @@
             </a>
             {% endif %}
         </td>
+
         <td class="text-center">
             {% if result.success == false %}
             <button id="btn-{{ result.testFileName }}"
@@ -83,6 +92,7 @@
             </button>
             {% endif %}
         </td>
+
     </tr>
     {% endfor %}
     </tbody>
