@@ -1,4 +1,4 @@
-FROM node:alpine AS builder
+FROM node:13 AS builder
 
 ENV NODE_ENV=production
 
