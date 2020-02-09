@@ -1,3 +1,9 @@
+## <small>1.3.1 (2020-02-09)</small>
+
+* fix Docker build by switching from node:alpine to node:13 (fixes Pre-built binaries not found for ca ([7304b30](https://github.com/jochendiekenbrock/image-comparison-backend/commit/7304b30))
+
+
+
 ## 1.3.0 (2020-02-09)
 
 * Bump handlebars from 4.1.0 to 4.5.3 ([03d48c0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/03d48c0))
