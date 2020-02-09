@@ -1,9 +1,9 @@
-import * as Router from 'koa-router';
-
 import { FileHelper } from '../helper';
+import { IRouterParamContext } from 'koa-router';
+import { ParameterizedContext } from 'koa';
 
 export class MainController {
-    public static async home(ctx: Router.RouterContext) {
+    public static async home(ctx: IRouterParamContext & ParameterizedContext) {
         const dict = FileHelper.getBranchDictionary();
         const branchCount = Object.keys(dict).length;
         if (branchCount === 0) {
