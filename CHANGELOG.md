@@ -1,3 +1,17 @@
+## 1.3.0 (2020-02-09)
+
+* Bump handlebars from 4.1.0 to 4.5.3 ([03d48c0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/03d48c0))
+* Bump js-yaml from 3.12.1 to 3.13.1 ([93fde43](https://github.com/jochendiekenbrock/image-comparison-backend/commit/93fde43))
+* Bump lodash from 4.17.11 to 4.17.15 ([7d8c14d](https://github.com/jochendiekenbrock/image-comparison-backend/commit/7d8c14d))
+* Bump lodash.template from 4.4.0 to 4.5.0 ([a96b480](https://github.com/jochendiekenbrock/image-comparison-backend/commit/a96b480))
+* Bump mixin-deep from 1.3.1 to 1.3.2 ([d99c560](https://github.com/jochendiekenbrock/image-comparison-backend/commit/d99c560))
+* display the date in human readable format and add the real date as element title ([789af05](https://github.com/jochendiekenbrock/image-comparison-backend/commit/789af05))
+* make list sortable ([5927eb6](https://github.com/jochendiekenbrock/image-comparison-backend/commit/5927eb6))
+* update dependencies and fix typing ([2e90df5](https://github.com/jochendiekenbrock/image-comparison-backend/commit/2e90df5))
+* upgrade bootstrap, fontawsome and add bootstrap-table ([d062c74](https://github.com/jochendiekenbrock/image-comparison-backend/commit/d062c74))
+
+
+
 ## <small>1.2.1 (2019-02-24)</small>
 
 * fix typing ([272b4e0](https://github.com/jochendiekenbrock/image-comparison-backend/commit/272b4e0))
