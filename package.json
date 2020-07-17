@@ -1,6 +1,6 @@
 {
     "name": "image-comparison-backend",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "description": "Backend of an image comparison solution. It reads the results of image comparisons performed by the image comparison frontend and allows to manage them.",
     "main": "dist/index.js",
     "license": "GPL-3.0-or-later",

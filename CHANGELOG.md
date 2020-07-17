@@ -1,3 +1,10 @@
+## <small>1.3.2 (2020-07-17)</small>
+
+* Bump lodash from 4.17.15 to 4.17.19 ([e46614c](https://github.com/jochendiekenbrock/image-comparison-backend/commit/e46614c))
+* update dependencies ([636c972](https://github.com/jochendiekenbrock/image-comparison-backend/commit/636c972))
+
+
+
 ## <small>1.3.1 (2020-02-09)</small>
 
 * fix Docker build by switching from node:alpine to node:13 (fixes Pre-built binaries not found for ca ([7304b30](https://github.com/jochendiekenbrock/image-comparison-backend/commit/7304b30))
